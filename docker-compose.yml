@@ -3,6 +3,12 @@ volumes:
   settings:
   iobrokerdata:
   homeassistant:
+  openhab_addons:
+    driver: local
+  openhab_conf:
+    driver: local
+  openhab_userdata:
+    driver: local
 services:
   kiosk:
     restart: always
@@ -42,3 +48,18 @@ services:
     privileged: true
     volumes:
       - 'homeassistant:/config'
+  openhab:
+    restart: always
+    image: "openhab/openhab:3.0.2"
+    container_name: openhab
+    hostname: openhab
+    network_mode: host
+    privileged: true
+    volumes:
+      - "openhab_addons:/openhab/addons"
+      - "openhab_conf:/openhab/conf"
+      - "openhab_userdata:/openhab/userdata"
+    environment:
+      OPENHAB_HTTP_PORT: "8085"
+      OPENHAB_HTTPS_PORT: "8443"
+      EXTRA_JAVA_OPTS: "-Duser.timezone=Europe/Berlin"
