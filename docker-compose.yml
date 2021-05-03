@@ -2,6 +2,7 @@ version: '2'
 volumes:
   settings:
   iobrokerdata:
+  homeassistant:
 services:
   kiosk:
     restart: always
@@ -32,3 +33,12 @@ services:
     network_mode: host
     volumes:
       - 'iobrokerdata:/opt/iobroker'
+  homeassistant:
+    restart: always
+    image: homeassistant/raspberrypi4-homeassistant:stable
+    container_name: homeassistant
+    hostname: homeassistant
+    network_mode: host
+    privileged: true
+    volumes:
+      - 'homeassistant:/config'
