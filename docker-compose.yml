@@ -1,14 +1,11 @@
 version: '2'
 volumes:
-  settings:
-  iobrokerdata:
-  homeassistant:
+  kiosk_data:
+  iobroker_data:
+  homeassistant_data:
   openhab_addons:
-    driver: local
   openhab_conf:
-    driver: local
   openhab_userdata:
-    driver: local
 services:
   kiosk:
     restart: always
@@ -16,7 +13,17 @@ services:
     privileged: true
     network_mode: host
     volumes:
-      - 'settings:/data'
+      - 'kiosk_data:/data'
+  audio:
+    restart: always
+    image: balenablocks/audio:raspberrypi4-64
+    privileged: true
+    ports:
+      - 4317:4317
+    environment:
+      AUDIO_OUTPUT: AUTO
+    labels:
+      io.balena.features.dbus: 1 # Only required for bluetooth support
   scheduler:
     restart: always
     build: ./scheduler
@@ -29,17 +36,6 @@ services:
     labels:
       io.balena.features.dbus: '1'
       io.balena.features.firmware: '1'
-  raspap:
-    restart: always
-    image: jrcichra/raspap-docker
-    container_name: raspap
-    hostname: raspap
-    privileged: true
-    network_mode: host
-    cap_add:
-      - SYS_ADMIN
-    labels:
-      io.balena.features.sysfs: '1'
   iobroker:
     restart: always
     image: buanet/iobroker:latest
@@ -48,7 +44,7 @@ services:
     privileged: true
     network_mode: host
     volumes:
-      - 'iobrokerdata:/opt/iobroker'
+      - 'iobroker_data:/opt/iobroker'
   homeassistant:
     restart: always
     image: homeassistant/raspberrypi4-homeassistant:stable
@@ -57,7 +53,7 @@ services:
     network_mode: host
     privileged: true
     volumes:
-      - 'homeassistant:/config'
+      - 'homeassistant_data:/config'
   openhab:
     restart: always
     image: 'openhab/openhab:3.0.2'

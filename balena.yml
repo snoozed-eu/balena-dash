@@ -1,7 +1,6 @@
-name: balenaDash
+name: SnoozedTerminal
 description: >-
-  Raspberry Pi-powered digital signage or website viewer, remotely accessible
-  from anywhere.
+  Based on balenaDash: https://github.com/balenalabs/balena-dash
 type: sw.application
 assets:
   repository:
@@ -21,15 +20,13 @@ data:
     - ENABLE_GPU: 1
     - KIOSK: 1
     - PERSISTENT: 1
-    - PORTAL_SSID: balenaDash
-    - PORTAL_PASSPHRASE: balenaDash
+    - PORTAL_SSID: SnoozedTerminal
     - ACTIVITY_TIMEOUT: 600
     - LAUNCH_URL: ''
     - ROTATE_DISPLAY: normal
     - WINDOW_SIZE: ''
     - WINDOW_POSITION: '0,0'
     - LOCAL_HTTP_DELAY: 0
-    - FBCP_DISPLAY: ''
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
     - raspberrypi4-64
@@ -39,4 +36,4 @@ data:
     - intel-nuc
     - genericx86-64-ext
     - raspberrypi400-64
-version: 2.0.8
+version: 0.0.1
