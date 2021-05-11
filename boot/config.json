@@ -1,0 +1,8 @@
+{
+  "os": {
+    "udevRules": {
+      "60-tp-link-wn725n-v3-hostapd": "ACTION==\"add\", SUBSYSTEM==\"net\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"0bda\", ATTRS{idProduct}==\"8179\", NAME=\"ap0\", ENV{NM_UNMANAGED}=\"1\"",
+      "60-tp-link-wn722n-v3-hostapd": "ACTION==\"add\", SUBSYSTEM==\"net\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"2357\", ATTRS{idProduct}==\"010c\", NAME=\"ap0\", ENV{NM_UNMANAGED}=\"1\""
+    }
+  }
+}
