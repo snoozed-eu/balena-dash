@@ -6,10 +6,10 @@ use std::str::FromStr;
 use std::path::PathBuf;
 use std::ffi::OsStr;
 
-const DEFAULT_GATEWAY: &str = "192.168.42.1";
-const DEFAULT_DHCP_RANGE: &str = "192.168.42.2,192.168.42.254";
-const DEFAULT_SSID: &str = "WiFi Connect";
-const DEFAULT_ACTIVITY_TIMEOUT: &str = "0";
+const DEFAULT_GATEWAY: &str = "10.0.0.1";
+const DEFAULT_DHCP_RANGE: &str = "10.0.0.2,10.0.0.254";
+const DEFAULT_SSID: &str = "SnoozedTerminal";
+const DEFAULT_ACTIVITY_TIMEOUT: &str = "300";
 const DEFAULT_UI_DIRECTORY: &str = "ui";
 const DEFAULT_LISTENING_PORT: &str = "80";
 
