@@ -28,47 +28,52 @@ services:
     restart: always
     build: ./scheduler
     privileged: true
-  wifi-connect:
-    restart: always
-    build: ./wifi-connect
-    network_mode: host
+  wifi-repeater:
+    build: ./wifi-repeater
     privileged: true
-    cap_add:
-      - NET_ADMIN
     labels:
       io.balena.features.dbus: '1'
-    environment:
-      DBUS_SYSTEM_BUS_ADDRESS: 'unix:path=/host/run/dbus/system_bus_socket'
-  iobroker:
-    restart: always
-    image: buanet/iobroker:latest
-    container_name: iobroker
-    hostname: iobroker
-    privileged: true
-    network_mode: host
-    volumes:
-      - 'iobroker_data:/opt/iobroker'
-  homeassistant:
-    restart: always
-    image: homeassistant/raspberrypi4-homeassistant:stable
-    container_name: homeassistant
-    hostname: homeassistant
-    network_mode: host
-    privileged: true
-    volumes:
-      - 'homeassistant_data:/config'
-  openhab:
-    restart: always
-    image: 'openhab/openhab:3.0.2'
-    container_name: openhab
-    hostname: openhab
-    network_mode: host
-    privileged: true
-    volumes:
-      - 'openhab_addons:/openhab/addons'
-      - 'openhab_conf:/openhab/conf'
-      - 'openhab_userdata:/openhab/userdata'
-    environment:
-      OPENHAB_HTTP_PORT: '8085'
-      OPENHAB_HTTPS_PORT: '8443'
-      EXTRA_JAVA_OPTS: '-Duser.timezone=Europe/Berlin'
+  # wifi-connect:
+  #   restart: always
+  #   build: ./wifi-connect
+  #   network_mode: host
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   labels:
+  #     io.balena.features.dbus: '1'
+  #   environment:
+  #     DBUS_SYSTEM_BUS_ADDRESS: 'unix:path=/host/run/dbus/system_bus_socket'
+  # iobroker:
+  #   restart: always
+  #   image: buanet/iobroker:latest
+  #   container_name: iobroker
+  #   hostname: iobroker
+  #   privileged: true
+  #   network_mode: host
+  #   volumes:
+  #     - 'iobroker_data:/opt/iobroker'
+  # homeassistant:
+  #   restart: always
+  #   image: homeassistant/raspberrypi4-homeassistant:stable
+  #   container_name: homeassistant
+  #   hostname: homeassistant
+  #   network_mode: host
+  #   privileged: true
+  #   volumes:
+  #     - 'homeassistant_data:/config'
+  # openhab:
+  #   restart: always
+  #   image: 'openhab/openhab:3.0.2'
+  #   container_name: openhab
+  #   hostname: openhab
+  #   network_mode: host
+  #   privileged: true
+  #   volumes:
+  #     - 'openhab_addons:/openhab/addons'
+  #     - 'openhab_conf:/openhab/conf'
+  #     - 'openhab_userdata:/openhab/userdata'
+  #   environment:
+  #     OPENHAB_HTTP_PORT: '8085'
+  #     OPENHAB_HTTPS_PORT: '8443'
+  #     EXTRA_JAVA_OPTS: '-Duser.timezone=Europe/Berlin'
